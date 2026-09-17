@@ -27,3 +27,17 @@ export async function buscarFilmesPorNome(nome) {
   const dados = await resposta.json();
   return dados.results;
 }
+
+export async function buscarDetalhesDoFilme(id) {
+  const resposta = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?language=pt-BR`,
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    }
+  );
+
+  const dados = await resposta.json();
+  return dados;
+}
