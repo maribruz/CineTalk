@@ -19,6 +19,7 @@ src/
 │   └── Cabecalho.jsx
 ├── paginas/
 │   ├── Inicio.jsx
+|   ├── Films.jsx
 │   ├── DetalhesFilme.jsx
 │   ├── MinhasAvaliacoes.jsx
 │   └── NaoEncontrado.jsx
@@ -34,7 +35,8 @@ src/
 
 | Página | Rota | Objetivo |
 | --- | --- | --- |
-| **Inicio** | `/` | Mostrar os filmes em destaque e o campo de busca |
+| **Inicio** | `/` | Tela de abertura do site, com uma chamada para ir ver os filmes |
+| **Filmes** | `/filmes` | Mostrar os filmes em destaque e o campo de busca |
 | **DetalhesFilme** | `/filme/:id` | Mostrar foto, sinopse, nota oficial, comentários e área de avaliar |
 | **MinhasAvaliacoes** | `/minhas-avaliacoes` | Mostrar a lista dos filmes que você já avaliou |
 | **NaoEncontrado** | `*` | Mostrar aviso de página não encontrada (erro 404) |
@@ -58,7 +60,7 @@ src/
 
 | Estado | Onde será controlado? | Por quê? |
 | --- | --- | --- |
-| **Lista de filmes e busca** | `Inicio.jsx` | Guarda o que você digitou na busca e os filmes que aparecem na tela |
+| **Lista de filmes e busca** | `Filmes.jsx` | Guarda o que você digitou na busca e os filmes que aparecem na tela |
 | **Dados do filme atual** | `DetalhesFilme.jsx` | Guarda as informações do filme que a API retornou |
 | **Nota e texto digitado** | `FormularioAvaliacao.jsx` | Guarda a nota e o comentário enquanto você está escrevendo |
 | **Lista de avaliações** | `MinhasAvaliacoes.jsx` e `DetalhesFilme.jsx` | Lê o `localStorage` para mostrar o que você já salvou no navegador |
