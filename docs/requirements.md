@@ -1,57 +1,137 @@
-# requirements.md — CineTalk
+# Requirements — CineTalk
 
-## Sobre o projeto
+## 1. Visão do Produto
 
-O TV Time fechou em julho de 2026 e levou junto os dados de todo mundo que usava. A gente ficou sem um lugar simples pra anotar o que assistiu e ver o que os outros acharam. O CineTalk tenta resolver essa parte específica desse problema.
+### Nome
 
-## Qual problema a gente escolheu resolver
+CineTalk
 
-As pessoas assistem um filme e querem anotar rápido o que acharam, sem escrever uma resenha gigante em outro lugar. E antes de assistir algo, querem saber se quem já viu recomendou ou não.
+### Problema
 
-## O que o site vai fazer
+Quem gosta de ver filmes costuma esquecer a nota e o que achou dos filmes que já assistiu.
 
-- Mostrar filmes (vindos da API do TMDB) pra pessoa navegar e pesquisar
-- Deixar dar uma nota de 1 a 5 estrelas pra um filme e escrever um comentário curto
-- Marcar automaticamente um filme como "assistido" quando a pessoa avalia ele — não existe um botão separado de "marcar como visto", o selo aparece sozinho a partir da nota
-- Mostrar, na página do filme, os comentários que outras pessoas deixaram
-- Ter uma página com "meus filmes avaliados/assistidos"
+### Público
 
-O que a gente não vai fazer nessa versão: assistir o filme dentro do site (nada de player/streaming), login de verdade, seguir outras pessoas, criar listas, mostrar onde assistir.
+Pessoas que querem um lugar simples pra guardar a opinião sobre os filmes que vêm assistindo.
 
-## Público alvo
+### Proposta de solução
 
-Gente que assiste bastante filme/série e curte comentar rápido sobre o que viu, sem ter que criar conta em mais um app.
+Um site em React simples que busca filmes da API do TMDB, deixa a gente dar nota com estrelas e escrever um comentário, salvando tudo no próprio navegador.
 
-## Funcionalidades do site
+---
 
-- Ver filmes populares assim que entra no site
-- Pesquisar um filme pelo nome
-- Clicar num filme e ver a sinopse, a nota do TMDB e os comentários de quem já assistiu
-- Dar uma nota (1 a 5 estrelas) e escrever um comentário sobre o filme
-- Ver o próprio comentário aparecer na hora, sem precisar recarregar a página
-- Ver uma lista com tudo que já avaliou
-- Apagar uma avaliação, se mudar de ideia
+## 2. Objetivo do MVP
 
-## Como eu vou saber que está funcionando
+Um site funcionando onde dá pra buscar filmes, ver os detalhes de cada um, escrever uma avaliação (nota + comentário) e ver a lista de filmes que eu já avaliei.
 
-- A página inicial mostra uma lista de filmes reais, vindos da API
-- A busca realmente filtra pelo que a pessoa digitou
-- Clicar num filme abre a página só daquele filme
-- Dá pra avaliar e o comentário aparece na lista na hora
-- Se eu recarregar a página, minha avaliação continua lá (fica salva no navegador)
-- A página do filme mostra comentários de outras pessoas também (como não tem um banco de dados de verdade nesse MVP, esses comentários são simulados)
-- Se eu entrar numa rota que não existe, aparece uma página de erro, não uma tela em branco
+---
 
-## Situações que precisam ser tratadas
+## 3. Funcionalidades
 
-- Carregando: enquanto espera a resposta da API
-- Deu erro: a API pode falhar, precisa avisar e deixar tentar de novo
-- Vazio: busca sem resultado, ou eu ainda não avaliei nenhum filme
-- Normal: quando tudo carregou certo
+### F01 — Busca e Destaques (Home)
 
-## Regras que o site precisa seguir
+**Descrição:** Mostra os filmes em destaque e tem um campo de busca pra procurar por nome.
 
-- Pra avaliar, a nota é obrigatória; o comentário pode ficar em branco
-- Só dá pra ter uma avaliação minha por filme — se eu avaliar de novo, substitui a de antes, não duplica
-- Os comentários aparecem do mais novo pro mais antigo
-- Um filme conta como "assistido" automaticamente a partir do momento que a pessoa dá uma nota a ele — não existe uma ação separada pra isso
+**Critérios de aceitação:**
+
+*  Mostrar o menu no topo em todas as telas
+*  Carregar a lista de destaques quando abrir o site
+*  Atualizar os filmes na tela quando eu digitar na busca
+*  Mostrar foto, título e nota em cada card de filme
+*  Abrir a página do filme ao clicar no card
+
+**Estados:**
+
+*  Inicial: carrega a lista de destaques
+*  Carregando: aviso de que está buscando os dados
+*  Sucesso: lista de filmes na tela
+*  Vazio: aviso de que nenhum filme foi encontrado
+*  Erro: aviso de que a API falhou
+
+---
+
+### F02 — Página do Filme
+
+**Descrição:** Mostra as informações do filme escolhido, a lista de comentários e a área pra eu avaliar.
+
+**Critérios de aceitação:**
+
+*  Carregar sinopse, foto e ano do filme usando o ID da URL
+*  Buscar os dados de novo se eu trocar de filme
+*  Mostrar os comentários inventados e o meu comentário (se eu já tiver avaliado)
+
+**Estados:**
+
+*  Inicial: busca as coisas na API
+*  Carregando: aviso de carregando
+*  Sucesso: detalhes do filme e comentários na tela
+*  Vazio: não se aplica
+*  Erro: aviso de que o filme não existe ou deu erro na busca
+
+---
+
+### F03 — Formulário de Avaliação
+
+**Descrição:** Espaço com 5 estrelas e caixa de texto pra eu avaliar o filme.
+
+**Critérios de aceitação:**
+
+*  Clicar nas estrelas pra escolher a nota de 1 a 5
+*  Digitar o texto do comentário na caixa
+*  Salvar nota e texto no `localStorage` ao clicar em enviar
+*  Colocar minha avaliação na lista da tela assim que enviar
+
+**Estados:**
+
+*  Inicial: estrelas e caixa de texto vazias
+*  Carregando: salvando os dados
+*  Sucesso: limpa os campos e atualiza a lista
+*  Vazio: não deixa enviar se não tiver nota ou texto
+*  Erro: aviso se der problema ao salvar no navegador
+
+---
+
+### F04 — Minhas Avaliações
+
+**Descrição:** Tela que pega tudo o que eu salvei no `localStorage` e mostra na tela.
+
+**Critérios de aceitação:**
+
+*  Ler o `localStorage` assim que a página abrir
+*  Mostrar os cards dos filmes com a nota que eu dei
+*  Abrir a página do filme se eu clicar em um card
+
+**Estados:**
+
+*  Inicial: lendo o navegador
+*  Carregando: processando os dados
+*  Sucesso: lista com as minhas avaliações
+*  Vazio: mensagem "Você ainda não avaliou nenhum filme" + botão pra voltar pra Home
+*  Erro: aviso se os dados salvos estiverem com problema
+
+---
+
+### F05 — Cabeçalho e Erro
+
+**Descrição:** Menu que fica no topo do site e tela de link que não existe.
+
+**Critérios de aceitação:**
+
+*  Cabeçalho visível em qualquer página do site
+*  Mandar pra página de erro se tentar acessar um link que não existe
+*  Botão na página de erro pra voltar pra Home
+
+**Estados:**
+
+*  Inicial: carrega a rota certa
+*  Sucesso: mostra a página pedida ou a tela de erro (404)
+
+---
+
+## 4. Fora do Escopo
+
+* Sistema de login e cadastro
+* Banco de dados de verdade (PostgreSQL, Firebase, etc.)
+* Enviar meus comentários para outras pessoas verem
+* Trocar foto de perfil
+* Criar lista de favoritos
