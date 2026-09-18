@@ -42,7 +42,7 @@ function Filmes() {
       )}
 
       {!carregando && !erro && (
-        <div>
+        <div className="grade-filmes">
           {filmes.map((filme) => (
             <CardFilme key={filme.id} filme={filme} />
           ))}

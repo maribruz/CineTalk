@@ -1,111 +1,207 @@
+/* Cores principais do site — se quiser mudar tudo de uma vez, mexe só aqui */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --cor-fundo: #f7f3ee;
+  --cor-texto: #2b2622;
+  --cor-texto-suave: #6b6259;
+  --cor-destaque: #b3432b;
+  --cor-linha: #ddd4c8;
+  --cor-branco: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.55;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+a {
+  color: var(--cor-destaque);
+  text-decoration: none;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+a:hover {
+  text-decoration: underline;
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
+  font-size: 1.9rem;
+  font-weight: normal;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+h2 {
+  font-size: 1.1rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--cor-linha);
+  padding-bottom: 8px;
+  font-family: Arial, sans-serif;
+  color: var(--cor-texto-suave);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Cabeçalho do site */
+header {
+  background: var(--cor-branco);
+  border-bottom: 1px solid var(--cor-linha);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+header a {
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  font-size: 0.9rem;
+}
+
+/* Espaço geral do conteúdo de cada página */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Página inicial: texto centralizado, como uma vitrine */
+.tela-inicial {
+  text-align: center;
+  padding-top: 60px;
+}
+
+.tela-inicial a {
+  display: inline-block;
+  background: var(--cor-destaque);
+  color: var(--cor-branco);
+  padding: 10px 24px;
+  border-radius: 2px;
+  margin-top: 16px;
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.tela-inicial a:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+/* Campo de busca */
+input,
+textarea {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  padding: 10px 12px;
+  border: 1px solid var(--cor-linha);
+  border-radius: 2px;
+  width: 100%;
+  background: var(--cor-branco);
+}
+
+textarea {
+  margin-top: 8px;
+  resize: vertical;
+}
+
+button {
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  background: var(--cor-destaque);
+  color: var(--cor-branco);
+  border: none;
+  border-radius: 2px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:disabled {
+  background: var(--cor-linha);
+  color: var(--cor-texto-suave);
+  cursor: not-allowed;
+}
+
+/* Grade de cards de filme (usada na Home, na página do filme e em Minhas Avaliações) */
+.grade-filmes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 28px 16px;
+  margin-top: 24px;
+}
+
+.cartao-filme {
+  display: block;
+  color: var(--cor-texto);
+  font-family: Arial, sans-serif;
+  transition: transform 0.15s ease;
+}
+
+.cartao-filme:hover {
+  transform: translateY(-3px);
+}
+
+.cartao-filme img {
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid var(--cor-linha);
+  display: block;
+  box-shadow: 0 2px 6px rgba(43, 38, 34, 0.12);
+}
+
+.cartao-filme p {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.minha-nota {
+  color: var(--cor-destaque);
+  font-weight: bold;
+}
+
+/* Imagem do pôster na página de detalhe do filme (sem mudar o layout, só o acabamento) */
+main img {
+  border-radius: 2px;
+  border: 1px solid var(--cor-linha);
+  box-shadow: 0 4px 12px rgba(43, 38, 34, 0.15);
+}
+
+/* Lista de comentários */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  border-bottom: 1px solid var(--cor-linha);
+  padding: 18px 0;
+}
+
+ul li strong {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+/* Formulário de avaliação */
+form {
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-linha);
+  border-radius: 2px;
+  padding: 24px;
+  max-width: 500px;
 }

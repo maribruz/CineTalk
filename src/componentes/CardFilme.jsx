@@ -7,7 +7,7 @@ function CardFilme({ filme, minhaNota }) {
     : null;
 
   return (
-    <Link to={`/filme/${filme.id}`}>
+    <Link to={`/filme/${filme.id}`} className="cartao-filme">
       {urlImagem ? (
         <img src={urlImagem} alt={filme.title} />
       ) : (
@@ -16,7 +16,7 @@ function CardFilme({ filme, minhaNota }) {
       <p>{filme.title}</p>
       <p>Nota TMDB: {filme.vote_average.toFixed(1)}</p>
       {minhaNota && (
-        <p>
+        <p className="minha-nota">
           Minha nota: <Estrelas nota={minhaNota} somenteLeitura={true} />
         </p>
       )}

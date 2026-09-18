@@ -10,13 +10,15 @@ function App() {
   return (
     <div>
       <Cabecalho />
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/filmes" element={<Filmes />} />
-        <Route path="/filme/:id" element={<DetalhesFilme />} />
-        <Route path="/minhas-avaliacoes" element={<MinhasAvaliacoes />} />
-        <Route path="*" element={<NaoEncontrado />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/filmes" element={<Filmes />} />
+          <Route path="/filme/:id" element={<DetalhesFilme />} />
+          <Route path="/minhas-avaliacoes" element={<MinhasAvaliacoes />} />
+          <Route path="*" element={<NaoEncontrado />} />
+        </Routes>
+      </main>
     </div>
   );
 }

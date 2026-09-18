@@ -46,7 +46,7 @@ function MinhasAvaliacoes() {
   return (
     <div>
       <h1>Minhas avaliações</h1>
-      <div>
+      <div className="grade-filmes">
         {filmesAvaliados.map(({ filme, minhaNota }) => (
           <CardFilme key={filme.id} filme={filme} minhaNota={minhaNota} />
         ))}
