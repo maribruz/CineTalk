@@ -1,11 +1,13 @@
-/* Cores principais do site — se quiser mudar tudo de uma vez, mexe só aqui */
+/* Cores principais do site */
 :root {
-  --cor-fundo: #f7f3ee;
-  --cor-texto: #2b2622;
-  --cor-texto-suave: #6b6259;
-  --cor-destaque: #b3432b;
-  --cor-linha: #ddd4c8;
-  --cor-branco: #ffffff;
+  --cor-fundo: #17140f;
+  --cor-texto: #f0ebe2;
+  --cor-texto-suave: #b3a692;
+  --cor-destaque: #c8874a;
+  --cor-destaque-hover: #dc9c5c;
+  --cor-linha: #3a332a;
+  --cor-branco: #221e17;
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -17,12 +19,13 @@ body {
   background: var(--cor-fundo);
   color: var(--cor-texto);
   font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 a {
   color: var(--cor-destaque);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
@@ -30,86 +33,144 @@ a:hover {
 }
 
 h1 {
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   font-weight: normal;
-  margin: 0 0 8px;
+  margin: 0 0 12px;
 }
 
 h2 {
   font-size: 1.1rem;
-  font-weight: normal;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 40px;
-  margin-bottom: 14px;
+  letter-spacing: 0.8px;
+  margin-top: 48px;
+  margin-bottom: 16px;
   border-bottom: 1px solid var(--cor-linha);
   padding-bottom: 8px;
   font-family: Arial, sans-serif;
   color: var(--cor-texto-suave);
 }
 
-/* Cabeçalho do site */
+/* Cabecalho do site: logo a esquerda, links a direita, sombra sutil */
 header {
   background: var(--cor-branco);
-  border-bottom: 1px solid var(--cor-linha);
-  padding: 18px 24px;
+  padding: 18px 32px;
   display: flex;
   align-items: center;
-  gap: 28px;
+  justify-content: space-between;
+  box-shadow: var(--sombra-suave);
 }
 
 header a {
-  font-weight: bold;
+  font-weight: 700;
   letter-spacing: 0.3px;
   font-family: Arial, sans-serif;
+  font-size: 1.05rem;
+  color: var(--cor-texto);
 }
 
 nav {
   display: flex;
-  gap: 22px;
-  font-size: 0.9rem;
+  gap: 28px;
+  align-items: center;
 }
 
-/* Espaço geral do conteúdo de cada página */
+nav a {
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--cor-destaque);
+  text-decoration: none;
+}
+
+/* Espaco geral do conteudo */
 main {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
 
-/* Página inicial: texto centralizado, como uma vitrine */
+/* Pagina inicial: visual de destaque centrado */
 .tela-inicial {
   text-align: center;
-  padding-top: 60px;
+  padding: 60px 20px;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
-.tela-inicial a {
+.tela-inicial h1 {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  color: var(--cor-texto);
+}
+
+.tela-inicial p {
+  font-size: 1.15rem;
+  color: var(--cor-texto-suave);
+  margin-bottom: 24px;
+}
+
+.tela-inicial > a {
   display: inline-block;
   background: var(--cor-destaque);
   color: var(--cor-branco);
-  padding: 10px 24px;
-  border-radius: 2px;
-  margin-top: 16px;
+  padding: 12px 32px;
+  border-radius: 6px;
   font-family: Arial, sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: var(--sombra-suave);
+  transition: all 0.2s ease;
 }
 
-.tela-inicial a:hover {
+.tela-inicial > a:hover {
   text-decoration: none;
-  opacity: 0.9;
+  background: var(--cor-destaque-hover);
+  transform: translateY(-2px);
 }
 
-/* Campo de busca */
+/* Vitrine de posteres em destaque na Home */
+.vitrine-destaque {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 600px;
+  margin: 48px auto 0;
+}
+
+.vitrine-destaque img {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: var(--sombra-suave);
+}
+
+@media (max-width: 600px) {
+  .vitrine-destaque {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Campos de entrada */
 input,
 textarea {
   font-family: Arial, sans-serif;
-  font-size: 1rem;
-  padding: 10px 12px;
+  font-size: 0.95rem;
+  padding: 10px 14px;
   border: 1px solid var(--cor-linha);
-  border-radius: 2px;
+  border-radius: 4px;
   width: 100%;
   background: var(--cor-branco);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--cor-destaque);
 }
 
 textarea {
@@ -119,15 +180,21 @@ textarea {
 
 button {
   font-family: Arial, sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   background: var(--cor-destaque);
   color: var(--cor-branco);
   border: none;
-  border-radius: 2px;
-  padding: 10px 20px;
+  border-radius: 4px;
+  padding: 10px 22px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 12px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: var(--cor-destaque-hover);
 }
 
 button:disabled {
@@ -136,52 +203,59 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Grade de cards de filme (usada na Home, na página do filme e em Minhas Avaliações) */
+/* Grade de filmes */
 .grade-filmes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 28px 16px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 32px 20px;
+  margin-top: 28px;
 }
 
 .cartao-filme {
   display: block;
   color: var(--cor-texto);
   font-family: Arial, sans-serif;
-  transition: transform 0.15s ease;
+  transition: transform 0.2s ease;
 }
 
 .cartao-filme:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  text-decoration: none;
 }
 
 .cartao-filme img {
   width: 100%;
-  border-radius: 2px;
+  border-radius: 6px;
   border: 1px solid var(--cor-linha);
   display: block;
-  box-shadow: 0 2px 6px rgba(43, 38, 34, 0.12);
+  box-shadow: var(--sombra-suave);
+  transition: box-shadow 0.2s ease;
+}
+
+.cartao-filme:hover img {
+  box-shadow: 0 6px 16px rgba(43, 38, 34, 0.18);
 }
 
 .cartao-filme p {
-  margin: 8px 0 0;
-  font-size: 0.8rem;
-  line-height: 1.3;
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
 .minha-nota {
   color: var(--cor-destaque);
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* Imagem do pôster na página de detalhe do filme (sem mudar o layout, só o acabamento) */
+/* Imagens gerais (ex: poster na pagina de detalhe do filme) */
 main img {
-  border-radius: 2px;
+  border-radius: 6px;
   border: 1px solid var(--cor-linha);
-  box-shadow: 0 4px 12px rgba(43, 38, 34, 0.15);
+  box-shadow: var(--sombra-suave);
 }
 
-/* Lista de comentários */
+/* Lista de comentarios e avaliacoes */
 ul {
   list-style: none;
   padding: 0;
@@ -197,11 +271,12 @@ ul li strong {
   font-size: 0.9rem;
 }
 
-/* Formulário de avaliação */
+/* Formulario de avaliacao */
 form {
   background: var(--cor-branco);
   border: 1px solid var(--cor-linha);
-  border-radius: 2px;
+  border-radius: 6px;
   padding: 24px;
   max-width: 500px;
+  box-shadow: var(--sombra-suave);
 }
