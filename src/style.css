@@ -1,4 +1,4 @@
-/* Cores principais do site */
+
 :root {
   --cor-fundo: #17140f;
   --cor-texto: #f0ebe2;
@@ -51,7 +51,7 @@ h2 {
   color: var(--cor-texto-suave);
 }
 
-/* Cabecalho do site: logo a esquerda, links a direita, sombra sutil */
+
 header {
   background: var(--cor-branco);
   padding: 18px 32px;
@@ -86,14 +86,14 @@ nav a:hover {
   text-decoration: none;
 }
 
-/* Espaco geral do conteudo */
+
 main {
   max-width: 960px;
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
 
-/* Pagina inicial: visual de destaque centrado */
+
 .tela-inicial {
   text-align: center;
   padding: 60px 20px;
@@ -133,7 +133,7 @@ main {
   transform: translateY(-2px);
 }
 
-/* Vitrine de posteres em destaque na Home */
+
 .vitrine-destaque {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -154,7 +154,7 @@ main {
   }
 }
 
-/* Campos de entrada */
+
 input,
 textarea {
   font-family: Arial, sans-serif;
@@ -203,10 +203,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Grade de filmes */
+
 .grade-filmes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 4fr));
   gap: 32px 20px;
   margin-top: 28px;
 }
@@ -248,14 +248,14 @@ button:disabled {
   font-weight: 700;
 }
 
-/* Imagens gerais (ex: poster na pagina de detalhe do filme) */
+
 main img {
   border-radius: 6px;
   border: 1px solid var(--cor-linha);
   box-shadow: var(--sombra-suave);
 }
 
-/* Lista de comentarios e avaliacoes */
+
 ul {
   list-style: none;
   padding: 0;
@@ -271,7 +271,7 @@ ul li strong {
   font-size: 0.9rem;
 }
 
-/* Formulario de avaliacao */
+
 form {
   background: var(--cor-branco);
   border: 1px solid var(--cor-linha);
